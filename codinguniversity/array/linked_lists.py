@@ -5,3 +5,12 @@ class Node:
         self.value = value
         self.next = next
         
+class LinkedList: 
+    
+
+
+def main():
+    pass
+
+if __name__ == '__main__':
+    main()
