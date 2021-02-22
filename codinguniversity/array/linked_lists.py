@@ -4,6 +4,12 @@ class Node:
     def __init__(self, value, next=None):
         self.value = value
         self.next = next
+
+    def __str__(self):
+        return str(self.value)
+
+    def __repr__(self):
+        return self.value
         
 class LinkedList: 
     def __init__(self):
@@ -27,22 +33,71 @@ class LinkedList:
             count+=1
             curr=curr.next
 
-    def push_front(value):
+    def push_front(self,value):
         new_node = Node(value)
+        curr = self.head
+        if not curr:
+            self.head = new_node
+        new_node.next = curr
+        self.head = new_node
+        return self.head
         
+    def pop_front(self):
+        curr = self.head
+        if not curr:
+            return None
+        if not curr.next:
+            self.head = None
+            return curr.value
+        self.head = curr.next
+        return curr.value
+    
+    def pop_back(self):
+        curr = self.head
+        prev = curr
+        while curr:
+            if not curr.next:
+                prev.next = None
+                return curr.value
+            prev = curr
+            curr = curr.next
+    
+    def front(self):
+        if self.head:
+            return self.head.value
+    
+    def back(self):
+        curr = self.head
+        while curr:
+            if not curr.next:
+                return curr.value
+            curr = curr.next
+        
+    # def insert(self, index, value):
+    #     new_node = Node(value)
+    #     curr = self.head
+    #     if not curr or index == 0:
+    #         next_item = curr.next
+    #         new_node.next = next_item
+    #         self.head = new_node
+    #     while curr and index > 0:
+    #         curr = curr.next
+    #         index-=1
+    #     if index == 0:
+    #         next_item = curr.next
+    #         new_node.next = next_item
+    #         curr.next = new_node
+
 
 
 
 
 def main():
     list = LinkedList()
-    head = Node(3)
-    node1 = Node(1)
-    node2 = Node(2)
-    list.head = head
-    head.next = node1
-    head.next.next = node2
-    print(list.value_at(6))
+    list.insert(0, 1)
+    print(list.front())
+    
+    # print(list.value_at(6))
 
 if __name__ == '__main__':
     main()
