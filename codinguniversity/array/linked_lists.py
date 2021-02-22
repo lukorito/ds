@@ -88,6 +88,18 @@ class LinkedList:
     #         new_node.next = next_item
     #         curr.next = new_node
 
+    def erase(self, index):
+        pass
+
+    def value_n_from_end(self, n):
+        pass
+
+    def reverse(self):
+        pass
+
+    def remove_value(value):
+        pass
+
 
 
 
