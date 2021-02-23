@@ -16,6 +16,17 @@ class LinkedList:
         self.size = 0
         self.head = None
 
+    def __str__(self):
+       return  str(self.__repr__())
+
+    def __repr__(self):
+        arr = []
+        curr = self.head
+        while curr:
+            arr.append(curr.value)
+            curr = curr.next
+        return arr
+
     def size(self):
         return self.size
 
@@ -73,20 +84,35 @@ class LinkedList:
                 return curr.value
             curr = curr.next
         
-    # def insert(self, index, value):
-    #     new_node = Node(value)
-    #     curr = self.head
-    #     if not curr or index == 0:
-    #         next_item = curr.next
-    #         new_node.next = next_item
-    #         self.head = new_node
-    #     while curr and index > 0:
-    #         curr = curr.next
-    #         index-=1
-    #     if index == 0:
-    #         next_item = curr.next
-    #         new_node.next = next_item
-    #         curr.next = new_node
+    def insert(self, index, value):
+        new_node = Node(value)
+        curr = self.head
+        prev = curr
+        count = 0
+        if index == 0:
+            new_node.next = curr
+            self.head = new_node
+            return self.head
+        # while curr:
+        #     print(index, count)
+        #     if index == count:
+        #         new_node.next = curr
+        #         prev.next = new_node
+        #         return self.head
+        #     prev = curr
+        #     curr = curr.next
+        #     count+=1
+    
+        
+        
+        
+
+        # while curr:
+        #     if count == index:
+        #         print('hi')
+        #     prev = curr
+        #     curr = curr.next
+        #     count+=1
 
     def erase(self, index):
         pass
@@ -107,7 +133,9 @@ class LinkedList:
 def main():
     list = LinkedList()
     list.insert(0, 1)
-    print(list.front())
+    list.insert(1, 4)
+    print(list)
+    # print(list.front())
     
     # print(list.value_at(6))
 
