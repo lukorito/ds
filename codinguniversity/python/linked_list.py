@@ -86,45 +86,77 @@ class LinkedList:
         
     def insert(self, index, value):
         new_node = Node(value)
-        curr = self.head
-        prev = curr
-        count = 0
-        if index == 0:
-            new_node.next = curr
+        if index > self.size+1:
+            return None
+        if self.head == None:
             self.head = new_node
+            self.size+=1
             return self.head
-        # while curr:
-        #     print(index, count)
-        #     if index == count:
-        #         new_node.next = curr
-        #         prev.next = new_node
-        #         return self.head
-        #     prev = curr
-        #     curr = curr.next
-        #     count+=1
-    
-        
-        
-        
-
-        # while curr:
-        #     if count == index:
-        #         print('hi')
-        #     prev = curr
-        #     curr = curr.next
-        #     count+=1
+        curr = self.head
+        count = 0
+        while curr:    
+            if index == count:
+                next_pointer = curr.next
+                new_node.next = next_pointer                
+                curr.next = new_node
+                self.size+=1
+                return self.head
+            curr = curr.next
+            count += 1
 
     def erase(self, index):
-        pass
+        if index > self.size:
+            return None
+        curr = self.head
+        prev = None
+        count = 0
+        while curr:
+            if index == count:
+                next_pointer = curr.next
+                prev.next = next_pointer
+                return self.head
+            prev = curr
+            curr = curr.next
+            count += 1
+
 
     def value_n_from_end(self, n):
+        position = self.size - (n + 1)
+        count = 0
+        curr = self.head
+        while curr:
+            if count == position:
+                return curr.value
+            count+=1
+            curr = curr.next
         pass
 
     def reverse(self):
-        pass
+        if not self.head:
+            return None
+        if self.size == 1:
+            return self.head
+        curr = self.head
+        prev = None
+        while curr:
+            next_pointer = curr.next
+            curr.next = prev
+            prev = curr
+            curr = next_pointer
+        return prev
+
 
     def remove_value(value):
-        pass
+        curr = self.head
+        prev = None
+        while curr:
+            if curr.value == value:
+                next_pointer = curr.next
+                prev.next = next_pointer
+                return self.head
+            prev = curr
+            curr = curr.next
+
 
 
 
@@ -133,8 +165,13 @@ class LinkedList:
 def main():
     list = LinkedList()
     list.insert(0, 1)
-    list.insert(1, 4)
-    print(list)
+    list.insert(0, 4)
+    list.insert(1, 5)
+    list.insert(2, 6)
+    # list.erase(1)
+    print(list.reverse())
+    # print(list)
+    # print(list.value_n_from_end(2))
     # print(list.front())
     
     # print(list.value_at(6))
