@@ -75,6 +75,9 @@ class QueueWithCircularArray:
 
     def empty(self):
         return self.read_index == self.write_index
+
+    def full(self):
+        return self.read_index == (self.write_index + 1) % self.length
         
             
             
