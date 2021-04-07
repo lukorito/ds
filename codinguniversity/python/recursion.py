@@ -46,14 +46,19 @@ def is_palindrome(s):
 # print(is_palindrome('Anna'))
 
 def binary_search(arr, target):
-    mid = math.floor((len(arr) - 1)/2)
-    if not len(arr):
-        return False
-    if arr[mid] == target:
-        return True
-    if arr[mid] > target:
-        return binary_search(arr[0:mid], target)
-    if arr[mid] < target:
-        return binary_search(arr[mid: len(arr)-1], target)
+    # use start and stop pointers
+    def search(arr, start, stop, key):
+        if start > stop:
+            return
+        mid = math.floor((stop - start) / 2)
+        if arr[mid] == key:
+            return mid
+        elif arr[mid] < key:
+            search(arr, start, mid-1, key)
+        else:
+            search(arr, mid+1, stop, key) 
+
+    return search(arr, 0, len(arr) - 1, target)
+    
 
 print(binary_search([1,2,3,4,5,6,7,8,50], 50))
