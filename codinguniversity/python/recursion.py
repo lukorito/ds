@@ -49,16 +49,16 @@ def binary_search(arr, target):
     # use start and stop pointers
     def search(arr, start, stop, key):
         if start > stop:
-            return
-        mid = math.floor((stop - start) / 2)
+            return False
+        mid = math.floor((stop + start) / 2)
         if arr[mid] == key:
             return mid
         elif arr[mid] < key:
-            search(arr, start, mid-1, key)
+            return search(arr, mid+1, stop, key)
         else:
-            search(arr, mid+1, stop, key) 
+            return search(arr, start, mid-1, key) 
 
     return search(arr, 0, len(arr) - 1, target)
     
 
-print(binary_search([1,2,3,4,5,6,7,8,50], 50))
+print(binary_search([1,2,3,4,5,6,7,8,50], 5))
