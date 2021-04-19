@@ -60,5 +60,24 @@ def binary_search(arr, target):
 
     return search(arr, 0, len(arr) - 1, target)
     
+def binary_search_iter(arr, target):
+    start = 0
+    stop = len(arr) - 1    
+    while(True):
+        mid = math.floor((start+stop) / 2)
+        if start > stop:
+            return False
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] > target:
+            start = start
+            stop = mid-1
+            continue
+        else:
+            start = mid+1
+            stop = stop
+            continue
 
-print(binary_search([1,2,3,4,5,6,7,8,50], 5))
+
+
+print(binary_search_iter([1,2,3,4,5,6,7,8,50], 50))
