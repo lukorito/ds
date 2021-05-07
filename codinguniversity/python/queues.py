@@ -69,25 +69,16 @@ class QueueWithCircularArray:
         if self.read_index == self.write_index:
             # queue is empty
             return None
-       item = self.arr[self.read_index]
-       self.arr[self.read_index] = None
-       read = self.read_index = (self.read_index + 1) % self.length
+        item = self.arr[self.read_index]
+        self.arr[self.read_index] = None
+        read = self.read_index = (self.read_index + 1) % self.length
 
     def empty(self):
         return self.read_index == self.write_index
 
     def full(self):
-        return self.read_index == (self.write_index + 1) % self.length
-        
+        return self.read_index == (self.write_index + 1) % self.length       
             
-            
-
-
-
-
-
-
-
 # queue = Queue()
 # print(queue)
 # queue.enqueue(5)
@@ -101,12 +92,15 @@ class QueueWithCircularArray:
 # print(queue.dequeue())
 # print(queue.empty())
 
-queue = QueueWithCircularArray(3)
-queue.enqueue(5)
-queue.enqueue(4)
-queue.enqueue(3)
-queue.dequeue()
-queue.enqueue(3)
-print(queue)
+def main():
+    queue = QueueWithCircularArray(3)
+    queue.enqueue(5)
+    queue.enqueue(4)
+    queue.enqueue(3)
+    queue.dequeue()
+    queue.enqueue(3)
+    print(queue)
+
+# main()
 
     
