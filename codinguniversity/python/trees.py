@@ -1,4 +1,4 @@
-from queues import Queue
+import queue
 
 class Node:
     def __init__(self, val):
@@ -17,20 +17,45 @@ class BinarySearchTree:
        self.head = None
     
     def __str__(self):
-        # BFS
-        queue = Queue()
+        #DFS
+        # inorder gives a sorted list
+        '''
+        Time complexity O(n)
+        Space complexity : O(h)
+        '''
         arr = []
-        queue.enqueue(self.head)
-        # print(queue)
-        while not queue.empty():
-            curr = queue.dequeue()
-            print(curr, "curr queue")
-            arr.append(curr.value)
-            if curr.value.left:
-                queue.enqueue(curr.value.left)
-            if curr.value.right:
-                queue.enqueue(curr.value.right)
-        return arr   
+        def dfs(head):
+            if not head:
+                return            
+            dfs(head.left)   
+            arr.append(head.val)         
+            dfs(head.right) 
+
+        dfs(self.head)
+        return str(arr)
+
+    # def  get_height(self):
+
+    def bfs(self):
+        '''
+        Time complexity O(n)
+        Space complexity : best O(1) worst O(n/2)
+        '''
+        if not self.head:
+            return None
+        arr = []
+        q = queue.Queue()
+        q.put(self.head)
+        while not q.empty():
+            curr = q.get()
+            arr.append(curr.val)
+            if curr.left:
+                q.put(curr.left)
+            if curr.right:
+                q.put(curr.right)
+        return arr
+            
+
 
     def insert(self, val):
         newNode = Node(val)
@@ -59,4 +84,6 @@ class BinarySearchTree:
 bst = BinarySearchTree()
 bst.insert(5)
 bst.insert(3)
-print(bst)
+bst.insert(4)
+bst.insert(6)
+print(bst.bfs())
