@@ -79,6 +79,17 @@ class BinarySearchTree:
                         break
         return self.head.left
 
+    def find_height(self):
+        def height(node):
+            if not node:
+                return -1
+            return max(height(node.left), height(node.right)) + 1
+        return height(self.head)
+
+    def is_binary_search_tree(self):
+        
+
+
                 
 
 bst = BinarySearchTree()
@@ -86,4 +97,4 @@ bst.insert(5)
 bst.insert(3)
 bst.insert(4)
 bst.insert(6)
-print(bst.bfs())
+print(bst)
