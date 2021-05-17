@@ -87,6 +87,21 @@ class BinarySearchTree:
         return height(self.head)
 
     def is_binary_search_tree(self):
+        '''
+        Time Complexity O(n)
+        '''
+        def helper(node, minVal, maxVal):
+            # data has to always be within the range of mix and max
+            if not node:
+                return True
+            if (node.val > minVal and node.val < maxVal
+            and helper(node.left, minVal, node.val)
+            and helper(node.right, node.val, maxVal)
+            ):
+                return True
+            else:
+                return False
+        return helper(self.head, float('-inf'), float('inf'))
         
 
 
@@ -97,4 +112,4 @@ bst.insert(5)
 bst.insert(3)
 bst.insert(4)
 bst.insert(6)
-print(bst)
+print(bst.is_binary_search_tree())
