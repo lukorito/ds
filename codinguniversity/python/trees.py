@@ -18,7 +18,7 @@ class BinarySearchTree:
     
     def __str__(self):
         #DFS
-        # inorder gives a sorted list
+        # in order gives a sorted list
         '''
         Time complexity O(n)
         Space complexity : O(h)
@@ -102,6 +102,16 @@ class BinarySearchTree:
             else:
                 return False
         return helper(self.head, float('-inf'), float('inf'))
+    
+    def delete_tree(self):
+        self.head = None
+        return self.head
+
+    def node_count(self):
+        return len(list(self.bfs()))
+        
+                
+
         
 
 
@@ -112,4 +122,4 @@ bst.insert(5)
 bst.insert(3)
 bst.insert(4)
 bst.insert(6)
-print(bst.is_binary_search_tree())
+print(bst.is_in_tree(6))
